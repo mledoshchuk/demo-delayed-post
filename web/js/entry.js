@@ -1,20 +1,42 @@
-var sel = document.getElementById('create-select');
-sel.addEventListener('change', () => {
-    var select = document.getElementById('create-select').value;
-    getXMLHttpRequest(select);
+$('#main-contr').on('focus', '.datetimepicker', function() {
+    if( $(this).hasClass('.datetimepicker') === false )  {
+        $('.datetimepicker').datetimepicker({
+            'allowInputToggle': true,
+            'showClose': true,
+            'showClear': true,
+            'showTodayButton': true,
+            'format': 'YYYY-MM-DD HH:mm:ss'
+        });
+    }
 });
 
-function getXMLHttpRequest(selectValue) {
+const on = (ele, type, selector, handler) => {
+    ele.addEventListener(type, (event) => {
+        let el = event.target.closest(selector);
+        if (el) handler.call(el, event);
+    });
+};
+on(document, 'change', '#create-select', function(event) {
+    getXMLHttpRequest(this.value);
+});
 
+
+function getXMLHttpRequest(selectValue) {
     window.XMLHttpRequest ? xmlhttp = new XMLHttpRequest() : xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
 
     xmlhttp.onreadystatechange = function () {
         if (xmlhttp.readyState == XMLHttpRequest.DONE) {
             if (xmlhttp.status == 200) {
-
                 var response = JSON.parse(xmlhttp.responseText);
                 if (response.status) {
-                    window.location.href = response.url;
+                    if (response.id !== '0'){
+                        let container = document.getElementById('main-contr');
+                        container.innerHTML = response.result;
+                    }
+                    else{
+                        let container = document.getElementById('main-contr');
+                        container.innerHTML = response.result;
+                    }
                 }
 
             }

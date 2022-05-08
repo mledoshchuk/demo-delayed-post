@@ -3,6 +3,7 @@
 namespace app\models;
 
 use Yii;
+use yii\db\Query;
 
 /**
  * This is the model class for table "descriptive_post".
@@ -22,7 +23,6 @@ class DescriptivePost extends \yii\db\ActiveRecord
     public $position = '';
     public $position_name = '';
     public $post_at = '';
-    public int $id = 2;
     /**
      * {@inheritdoc}
      */
@@ -78,14 +78,5 @@ class DescriptivePost extends \yii\db\ActiveRecord
     public function getPost()
     {
         return $this->hasOne(Post::className(), ['id' => 'post_id']);
-    }
-
-    /**
-     * {@inheritdoc}
-     * @return \app\models\query\DescriptiveQuery the active query used by this AR class.
-     */
-    public static function find()
-    {
-        return new \app\models\query\DescriptiveQuery(get_called_class());
     }
 }

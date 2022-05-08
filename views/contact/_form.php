@@ -27,7 +27,3 @@ AssetBundle::register($this);
     </div>
 
 </div>
-<?php $this->registerJsFile(
-    '@web/js/contact.js',
-    ['depends' => [\yii\web\JqueryAsset::class]]
-);

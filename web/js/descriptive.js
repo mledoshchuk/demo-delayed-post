@@ -1,20 +1,11 @@
-document.getElementById('descriptive-submit-button').addEventListener("click", function(event) {
+on(document, 'click', '#descriptive-submit-button', function (event) {
     submitForm();
 });
-
-$('.datetimepicker').datetimepicker({
-    'allowInputToggle': true,
-    'showClose': true,
-    'showClear': true,
-    'showTodayButton': true,
-    'format': 'YYYY-MM-DD HH:mm:ss'
-});
-
 function submitForm() {
 
     window.XMLHttpRequest ? xmlhttp = new XMLHttpRequest() : xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
 
-    xmlhttp.onreadystatechange = function() {
+    xmlhttp.onreadystatechange = function () {
         if (xmlhttp.readyState == XMLHttpRequest.DONE) {
             if (xmlhttp.status == 200) {
 
@@ -51,14 +42,14 @@ function submitForm() {
     xmlhttp.setRequestHeader("X-Requested-With", "XMLHttpRequest");
     xmlhttp.setRequestHeader('X-CSRF-Token', yii.getCsrfToken());
 
-    var type = document.querySelector('[name="DescriptivePost[type]"]').value;
-    var companyName = document.querySelector('[name="Post[company_name]"]').value;
-    var positionName = document.querySelector('[name="Post[position]"]').value;
-    var positionDescription = document.querySelector('[name="DescriptivePost[position_description]"]').value;
-    var salary = document.querySelector('[name="DescriptivePost[salary]"]').value;
-    var startsAt = document.querySelector('[name="DescriptivePost[starts_at]"]').value;
-    var endstAt = document.querySelector('[name="DescriptivePost[ends_at]"]').value;
-    var postAt = document.querySelector('[name="DescriptivePost[post_at]"]').value;
+    let type = document.querySelector('[name="DescriptivePost[type]"]').value,
+        companyName = document.querySelector('[name="Post[company_name]"]').value,
+        positionName = document.querySelector('[name="Post[position]"]').value,
+        positionDescription = document.querySelector('[name="DescriptivePost[position_description]"]').value,
+        salary = document.querySelector('[name="DescriptivePost[salary]"]').value,
+        startsAt = document.querySelector('[name="DescriptivePost[starts_at]"]').value,
+        endstAt = document.querySelector('[name="DescriptivePost[ends_at]"]').value,
+        postAt = document.querySelector('[name="DescriptivePost[post_at]"]').value;
 
     xmlhttp.send(
         'csrf=' + yii.getCsrfToken() +

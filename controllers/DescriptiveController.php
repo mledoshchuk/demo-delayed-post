@@ -19,7 +19,7 @@ class DescriptiveController extends Controller
         \Yii::$app->queue->run(false);
 
         return $this->render("create", [
-            "model" => $model,
+            'model' => $model
         ]);
     }
 
@@ -40,19 +40,24 @@ class DescriptiveController extends Controller
 
         $postAtNow = date("Y-m-d H:i:s", strtotime("now"));
         $startsAt =
+            !empty($descriptivetPostRequest["starts_at"]) ?
             date(
                 "Y-m-d H:i:s",
                 strtotime($descriptivetPostRequest["starts_at"])
-            ) ?? $postAtNow;
+            ) : $postAtNow;
+
         $endsAt = date(
             "Y-m-d H:i:s",
             strtotime($descriptivetPostRequest["ends_at"])
         );
         $postAt =
+            !empty($descriptivetPostRequest["post_at"]) ?
             date(
                 "Y-m-d H:i:s",
                 strtotime($descriptivetPostRequest["post_at"])
-            ) ?? $postAtNow;
+            ) : $postAtNow;
+
+
 
         $postDynamicModel = DynamicModel::validateData(
             [
@@ -119,6 +124,21 @@ class DescriptiveController extends Controller
                             $this->addError(
                                 "starts_at",
                                 "Interval between StartsAt and EndsAt dates must be more then 3 months"
+                            );
+                        }
+                    },
+                ],
+                [
+                    ["ends_at"],
+                    function () {
+                        $origin = strtotime($this->starts_at ?? 'now');
+                        $target = strtotime($this->ends_at);
+                        $interval = abs($origin - $target);
+                        if ($interval < 7890000) {
+                            $this->addError(
+                                "starts_at",
+                                "StartsAt field is empty.
+                                 Interval between StartsAt and EndsAt dates must be more then 3 months"
                             );
                         }
                     },

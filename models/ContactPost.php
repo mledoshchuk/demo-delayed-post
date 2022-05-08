@@ -3,6 +3,7 @@
 namespace app\models;
 
 use Yii;
+use yii\db\Query;
 
 /**
  * This is the model class for table "contact_post".
@@ -20,6 +21,7 @@ class ContactPost extends \yii\db\ActiveRecord
     public $position = '';
     public $position_name = '';
     public $post_at = '';
+    
     /**
      * {@inheritdoc}    
      */

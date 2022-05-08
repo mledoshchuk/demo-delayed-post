@@ -28,6 +28,8 @@ class m220501_105735_create_table_post_type extends Migration
 
     public function safeDown()
     {
+        $this->dropIndex("type_name_UNIQUE", "post_type");
+
         $this->delete("post_type");
 
         $this->dropTable("post_type");

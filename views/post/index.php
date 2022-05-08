@@ -10,13 +10,8 @@ use app\models\Post;
 /* @var $searchModel app\models\post\search\PostSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Posts';
-$this->params['breadcrumbs'][] = $this->title;
+$this->title = 'delayed.post';
 ?>
 <div class="post-index">
-
     <h1><?= Html::encode($this->title) ?></h1>
-    <p>
-        <?= Html::a('Create Post', ['create'], ['class' => 'btn btn-success']) ?>
-    </p>
 </div>

@@ -1,20 +1,11 @@
-document.getElementById('contact-submit-button').addEventListener("click", function(event) {
+on(document, 'click', '#contact-submit-button', function(event) {
     submitForm();
 });
-
-$('.datetimepicker').datetimepicker({
-    'allowInputToggle': true,
-    'showClose': true,
-    'showClear': true,
-    'showTodayButton': true,
-    'format': 'YYYY-MM-DD HH:mm:ss'
-});
-
 function submitForm() {
 
     window.XMLHttpRequest ? xmlhttp = new XMLHttpRequest() : xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
 
-    xmlhttp.onreadystatechange = function() {
+    xmlhttp.onreadystatechange = function () {
         if (xmlhttp.readyState == XMLHttpRequest.DONE) {
             if (xmlhttp.status == 200) {
 
@@ -52,12 +43,12 @@ function submitForm() {
     xmlhttp.setRequestHeader("X-Requested-With", "XMLHttpRequest");
     xmlhttp.setRequestHeader('X-CSRF-Token', yii.getCsrfToken());
 
-    var type = document.querySelector('[name="ContactPost[type]"]').value;
-    var companyName = document.querySelector('[name="Post[company_name]"]').value;
-    var positionName = document.querySelector('[name="Post[position]"]').value;
-    var contactName = document.querySelector('[name="ContactPost[contact_name]"]').value;
-    var contactEmail = document.querySelector('[name="ContactPost[contact_email]"]').value;
-    var contactPostAt = document.querySelector('[name="ContactPost[post_at]"]').value;
+    let type = document.querySelector('[name="ContactPost[type]"]').value,
+        companyName = document.querySelector('[name="Post[company_name]"]').value,
+        positionName = document.querySelector('[name="Post[position]"]').value,
+        contactName = document.querySelector('[name="ContactPost[contact_name]"]').value,
+        contactEmail = document.querySelector('[name="ContactPost[contact_email]"]').value,
+        contactPostAt = document.querySelector('[name="ContactPost[post_at]"]').value;
 
     xmlhttp.send(
         'csrf=' + yii.getCsrfToken() +

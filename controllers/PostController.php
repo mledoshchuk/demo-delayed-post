@@ -2,6 +2,8 @@
 
 namespace app\controllers;
 
+use app\models\ContactPost;
+use app\models\DescriptivePost;
 use app\models\Post;
 use yii\web\Controller;
 use yii\helpers\Url;
@@ -21,21 +23,31 @@ class PostController extends Controller
     public function actionRedirect()
     {
         $typeId = $this->request->post("typeId");
-
+        $modelContact = new ContactPost();
+        $modelDescriptive = new DescriptivePost();
+        $modelPost = new Post();
+        
         switch ($typeId) {
             case "1":
-                $url = Url::toRoute(["contact/index"]);
+                $result =  $this->renderAjax("@app/views/contact/create", [
+                    "model" => $modelContact
+                ]);
                 break;
             case "2":
-                $url = Url::toRoute(["descriptive/index"]);
+                $result =  $this->renderAjax("@app/views/descriptive/create", [
+                    "model" => $modelDescriptive
+                ]);
                 break;
             default:
-                $url = Url::toRoute(["post/index"]);
+                $result =  $this->renderAjax("@app/views/post/create", [
+                    "model" => $modelPost
+                ]);
         }
 
         return \yii\helpers\Json::encode([
             "status" => true,
-            "url" => $url,
+            "id" => $typeId,
+            "result" => $result
         ]);
     }
 }
