@@ -1,27 +1,17 @@
 <?php
 
+use app\models\PostType;
 use yii\helpers\Html;
-use yii\widgets\ActiveForm;
+use yii\bootstrap4\ActiveForm;
 
-/* @var $this yii\web\View */
-/* @var $model app\models\Post */
-/* @var $form yii\widgets\ActiveForm */
 ?>
 
 <div class="post-form">
 
     <?php $form = ActiveForm::begin(); ?>
-
-    <?= $form->field($model, 'type')->textInput() ?>
-
-    <?= $form->field($model, 'company_name')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'position')->textInput(['maxlength' => true]) ?>
-
-    <div class="form-group">
-        <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
+    <div class="col-lg-4">
+        <?= $form->field($model, 'type')->dropDownList(PostType::find()->select(['type_name', 'id'])->indexBy('id')->column(), ['id' => 'create-select', 'prompt' => 'Please select...']); ?>
     </div>
-
     <?php ActiveForm::end(); ?>
 
 </div>

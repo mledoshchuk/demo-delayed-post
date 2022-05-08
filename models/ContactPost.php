@@ -15,8 +15,13 @@ use Yii;
  */
 class ContactPost extends \yii\db\ActiveRecord
 {
+    public int $type = 1;
+    public $company_name = '';
+    public $position = '';
+    public $position_name = '';
+    public $post_at = '';
     /**
-     * {@inheritdoc}
+     * {@inheritdoc}    
      */
     public static function tableName()
     {
@@ -31,8 +36,12 @@ class ContactPost extends \yii\db\ActiveRecord
         return [
             [['post_id', 'contact_email'], 'required'],
             [['post_id'], 'integer'],
+            [['type'], 'integer'],
+            [['post_at'], 'datetime', 'format' => 'Y-m-d H:i:s'],
             [['contact_name'], 'string', 'max' => 80],
             [['contact_email'], 'string', 'max' => 255],
+            [['contact_email'], 'email'],
+            [['contact_email'], 'filter','filter'=>'trim'],
             [['post_id'], 'exist', 'skipOnError' => true, 'targetClass' => Post::className(), 'targetAttribute' => ['post_id' => 'id']],
         ];
     }
@@ -45,7 +54,7 @@ class ContactPost extends \yii\db\ActiveRecord
         return [
             'post_id' => 'Post ID',
             'contact_name' => 'Contact Name',
-            'contact_email' => 'Contact Email',
+            'contact_email' => 'Contact Email'
         ];
     }
 
@@ -59,12 +68,14 @@ class ContactPost extends \yii\db\ActiveRecord
         return $this->hasOne(Post::className(), ['id' => 'post_id']);
     }
 
-    /**
-     * {@inheritdoc}
-     * @return \app\models\query\ContactQuery the active query used by this AR class.
-     */
-    public static function find()
-    {
-        return new \app\models\query\ContactQuery(get_called_class());
+    public function insertContactPost(int $postId, $contact_email, $contact_name){
+        
+        $this->post_id = $postId;
+        $this->contact_email = $contact_email;
+        $this->contact_name = $contact_name;
+        
+        $this->save();
+
+        return true;
     }
 }

@@ -17,6 +17,12 @@ use Yii;
  */
 class DescriptivePost extends \yii\db\ActiveRecord
 {
+    public int $type = 2;
+    public $company_name = '';
+    public $position = '';
+    public $position_name = '';
+    public $post_at = '';
+    public int $id = 2;
     /**
      * {@inheritdoc}
      */
@@ -32,9 +38,9 @@ class DescriptivePost extends \yii\db\ActiveRecord
     {
         return [
             [['post_id', 'ends_at'], 'required'],
+            [['ends_at'], 'datetime', 'format' => 'php:Y-m-d H:i:s'],
             [['post_id', 'salary'], 'integer'],
             [['position_description'], 'string'],
-            [['starts_at', 'ends_at'], 'safe'],
             [['post_id'], 'exist', 'skipOnError' => true, 'targetClass' => Post::className(), 'targetAttribute' => ['post_id' => 'id']],
         ];
     }
@@ -52,7 +58,18 @@ class DescriptivePost extends \yii\db\ActiveRecord
             'ends_at' => 'Ends At',
         ];
     }
+    public function insertDescriptivePost(int $postId, $positionDescription, int $salary, $startsAt, $endsAt){
+        
+        $this->post_id = $postId;
+        $this->position_description = $positionDescription;
+        $this->salary = $salary;
+        $this->starts_at = $startsAt;
+        $this->ends_at = $endsAt;
+        
+        $this->save();
 
+        return true;
+    }
     /**
      * Gets query for [[Post]].
      *
