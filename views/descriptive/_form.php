@@ -16,7 +16,7 @@ AssetBundle::register($this);
         'action' => null,
         'options' => ['id' => 'descriptive-form']
     ]); ?>
-    <div class="col-lg-4">
+    <div class="col-lg-4 col-md-6">
         <?= $form->field($model, 'type')->dropDownList(PostType::find()->select(['type_name', 'id'])->indexBy('id')->column(), ['id' => 'create-select', 'prompt' => 'Please select...']); ?>
         <?= $form->field($modelPost, 'company_name')->textInput() ?>
         <?= $form->field($modelPost, 'position')->textInput() ?>

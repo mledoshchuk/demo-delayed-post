@@ -36,9 +36,11 @@ $config = [
             'useFileTransport' => true,
         ],
         'queue' => [
-            'class' => \yii\queue\file\Queue::class,
-            'path' => '@runtime/queue',
-            'as log' => \yii\queue\LogBehavior::class
+            'class' => \yii\queue\db\Queue::class,
+            'db' => 'db', // DB connection component or its config 
+            'tableName' => '{{%queue}}', // Table name
+            'channel' => 'default', // Queue channel key
+            'mutex' => \yii\mutex\MysqlMutex::class, // Mutex used to sync queries
         ],
         'log' => [
             'traceLevel' => YII_DEBUG ? 3 : 0,

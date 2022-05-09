@@ -25,7 +25,6 @@ class DescriptiveController extends Controller
 
     public function actionCreate()
     {
-        //filter for safe inputs
         $post = new Post();
         $postQueue = new PostsQueue();
         $descriptive = new DescriptivePost();
@@ -127,22 +126,8 @@ class DescriptiveController extends Controller
                             );
                         }
                     },
-                ],
-                [
-                    ["ends_at"],
-                    function () {
-                        $origin = strtotime($this->starts_at ?? 'now');
-                        $target = strtotime($this->ends_at);
-                        $interval = abs($origin - $target);
-                        if ($interval < 7890000) {
-                            $this->addError(
-                                "starts_at",
-                                "StartsAt field is empty.
-                                 Interval between StartsAt and EndsAt dates must be more then 3 months"
-                            );
-                        }
-                    },
-                ],
+                ]
+
             ]
         );
 
@@ -175,13 +160,14 @@ class DescriptiveController extends Controller
             ]);
 
             if ($result == "Completed") {
-                $this->actionAddPostToQueue(
-                    $postQueue->id,
+                $queueResult = $this->actionAddPostToQueue(
+                    $postQueue,
+                    $post->id,
                     $postAtNow,
                     $postAt,
                     $htmlBody
                 );
-                echo "success";
+                echo "$queueResult";
             } else {
                 echo "error";
             }
@@ -193,18 +179,23 @@ class DescriptiveController extends Controller
         }
     }
 
-    public function actionAddPostToQueue($id, $origin, $target, $html)
+    public function actionAddPostToQueue($model, $id, $origin, $target, $html)
     {
         $origin = strtotime($origin);
         $target = strtotime($target) ?? strtotime("now");
         $interval = abs($origin - $target);
-
-        \Yii::$app->queue->delay($interval)->push(
+        
+        if (\Yii::$app->queue->delay($interval)->push(
             new PostJob([
+                "model" => $model,
                 "id" => $id,
                 "html" => $html,
                 "text" => "Posted successfully",
             ])
-        );
+        )) {           
+            echo 'success';
+        } else {
+            echo 'error';
+        }
     }
 }

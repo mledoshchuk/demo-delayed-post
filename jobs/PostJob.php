@@ -7,15 +7,15 @@ use app\models\PostsQueue;
 
 class PostJob extends BaseObject implements \yii\queue\JobInterface
 {
-    public $text;
     public $id;
+    public $model;
+    public $text;
     public $html;
+    
 
     public function execute($queue)
     {
         try {
-            $postQueue = new PostsQueue();
-
             \Yii::$app->mailer
                 ->compose()
                 ->setFrom("noreply@example.com")
@@ -24,7 +24,8 @@ class PostJob extends BaseObject implements \yii\queue\JobInterface
                 ->setTextBody($this->text)
                 ->setHtmlBody($this->html)
                 ->send();
-            $postQueue->insertQueueNotification(
+
+            $this->model->insertQueueNotification(
                 $this->id,
                 date("Y-m-d H:i:s", strtotime("now"))
             );
@@ -38,7 +39,7 @@ class PostJob extends BaseObject implements \yii\queue\JobInterface
                 ->setHtmlBody($this->html . "<div><pre>" . $e . "</pre></div>")
                 ->send();
 
-            $postQueue->insertQueueNotification(
+            $this->model->insertQueueNotification(
                 $this->id,
                 date("Y-m-d H:i:s", strtotime("now"))
             );

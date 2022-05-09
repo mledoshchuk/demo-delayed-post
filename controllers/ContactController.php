@@ -91,7 +91,6 @@ class ContactController extends Controller
                 $contactName,
                 $postAt
             );
-
             $insertedValues["type"] = "contact";
             $insertedValues["position"] = $positionName;
             $insertedValues["company_name"] = $companyName;
@@ -104,13 +103,14 @@ class ContactController extends Controller
             ]);
 
             if ($result == "Completed") {
-                $this->actionAddPostToQueue(
+                $queueResult = $this->actionAddPostToQueue(
+                    $postQueue,
                     $post->id,
                     $postAtNow,
                     $postAt,
                     $htmlBody
                 );
-                echo "success";
+                echo $queueResult;
             } else {
                 echo "error";
             }
@@ -122,18 +122,23 @@ class ContactController extends Controller
         }
     }
 
-    public function actionAddPostToQueue($id, $origin, $target, $html)
+    public function actionAddPostToQueue($model, $id, $origin, $target, $html)
     {
         $origin = strtotime($origin);
         $target = strtotime($target) ?? strtotime("now");
         $interval = abs($origin - $target);
 
-        \Yii::$app->queue->delay($interval)->push(
+        if (\Yii::$app->queue->delay($interval)->push(
             new PostJob([
+                "model" => $model,
                 "id" => $id,
                 "html" => $html,
                 "text" => "Posted successfully",
             ])
-        );
+        )) {
+            echo 'success';
+        } else {
+            echo 'error';
+        }
     }
 }

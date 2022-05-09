@@ -1,4 +1,4 @@
-on(document, 'click', '#contact-submit-button', function(event) {
+on(document, 'click', '#contact-submit-button', function (event) {
     submitForm();
 });
 function submitForm() {
@@ -8,7 +8,6 @@ function submitForm() {
     xmlhttp.onreadystatechange = function () {
         if (xmlhttp.readyState == XMLHttpRequest.DONE) {
             if (xmlhttp.status == 200) {
-
                 var response = xmlhttp.responseText;
                 if (response == 'success') {
                     swal({

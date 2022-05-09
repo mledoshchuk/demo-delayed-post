@@ -14,7 +14,8 @@ AppAsset::register($this);
 ?>
 <?php $this->beginPage() ?>
 <!DOCTYPE html>
-<html lang="<?= Yii::$app->language ?>" class="h-100">
+<html lang="<?= Yii::$app->language ?>" class="h-100" style="overflow-y: overlay;">
+
 <head>
     <meta charset="<?= Yii::$app->charset ?>">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -22,41 +23,41 @@ AppAsset::register($this);
     <title><?= Html::encode('delayed.post') ?></title>
     <?php $this->head() ?>
 </head>
+
 <body class="d-flex flex-column h-100">
-<?php $this->beginBody() ?>
+    <?php $this->beginBody() ?>
 
-<header>
-    <?php
-    NavBar::begin([
-        'brandLabel' => 'delayed.post',
-        'brandUrl' => Yii::$app->homeUrl,
-        'options' => [
-            'class' => 'navbar navbar-expand-md navbar-dark bg-dark fixed-top',
-        ],
-    ]);
-    echo Nav::widget([
-        'options' => ['class' => 'navbar-nav'],
-        'items' => [
-           
-        ],
-    ]);
-    NavBar::end();
-    ?>
-</header>
+    <header>
+        <?php
+        NavBar::begin([
+            'brandLabel' => 'delayed.post',
+            'brandUrl' => Yii::$app->homeUrl,
+            'options' => [
+                'class' => 'navbar navbar-expand-md navbar-dark bg-dark fixed-top',
+            ],
+        ]);
+        echo Nav::widget([
+            'options' => ['class' => 'navbar-nav'],
+            'items' => [],
+        ]);
+        NavBar::end();
+        ?>
+    </header>
 
-<main role="main" class="flex-shrink-0">
-    <div class="container" id="main-contr">
-        <?= $content ?>
-    </div>
-</main>
+    <main role="main" class="flex-shrink-0">
+        <div class="container" id="main-contr">
+            <?= $content ?>
+        </div>
+    </main>
 
-<footer class="footer mt-auto py-3 text-muted">
-    <div class="container">
-        <p class="float-left">&copy; delayed.post <?= date('Y') ?></p>
-    </div>
-</footer>
+    <footer class="footer mt-auto py-3 text-muted">
+        <div class="container">
+            <p class="float-left">&copy; delayed.post <?= date('Y') ?></p>
+        </div>
+    </footer>
 
-<?php $this->endBody() ?>
+    <?php $this->endBody() ?>
 </body>
+
 </html>
 <?php $this->endPage() ?>

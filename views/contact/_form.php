@@ -15,7 +15,7 @@ AssetBundle::register($this);
         'action' => null,
         'options' => ['id' => 'contact-form']
     ]); ?>
-    <div class="col-lg-4">
+    <div class="col-xl-4 col-lg-4 col-md-6">
         <?= $form->field($model, 'type')->dropDownList(PostType::find()->select(['type_name', 'id'])->indexBy('id')->column(), ['id' => 'create-select', 'prompt' => 'Please select...']); ?>
         <?= $form->field($postModel, 'company_name')->textInput() ?>
         <?= $form->field($postModel, 'position')->textInput() ?>
