@@ -15,9 +15,7 @@ class ContactController extends Controller
     public function actionIndex()
     {
         $model = new ContactPost();
-
-        \Yii::$app->queue->run(false);
-
+        
         return $this->render("create", [
             "model" => $model,
         ]);

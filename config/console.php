@@ -1,5 +1,5 @@
 <?php
-
+use yii\helpers\Url;
 $params = require __DIR__ . '/params.php';
 $db = require __DIR__ . '/db.php';
 
@@ -25,10 +25,21 @@ $config = [
                 ],
             ],
         ],
+        'mailer' => [
+            'class' => 'yii\swiftmailer\Mailer',
+            // send all mails to a file by default. You have to set
+            // 'useFileTransport' to false and configure transport
+            // for the mailer to send real emails.
+            'useFileTransport' => true,
+        ],
         'queue' => [
             'class' => \yii\queue\file\Queue::class,
             'path' => '@runtime/queue',
             'as log' => \yii\queue\LogBehavior::class,
+        ],
+        'urlManager' => [
+            'class' => 'yii\web\UrlManager',
+            'scriptUrl' => 's4.localhost/web/'
         ],
         'db' => $db,
     ],

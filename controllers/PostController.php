@@ -13,8 +13,7 @@ class PostController extends Controller
     public function actionIndex()
     {
         $model = new Post();
-
-        \Yii::$app->queue->run(false);
+        
         return $this->render("create", [
             "model" => $model,
         ]);

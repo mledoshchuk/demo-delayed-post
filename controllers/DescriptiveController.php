@@ -15,9 +15,7 @@ class DescriptiveController extends Controller
     public function actionIndex()
     {
         $model = new DescriptivePost();
-
-        \Yii::$app->queue->run(false);
-
+        
         return $this->render("create", [
             'model' => $model
         ]);
