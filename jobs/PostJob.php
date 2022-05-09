@@ -3,7 +3,6 @@
 namespace app\jobs;
 
 use yii\base\BaseObject;
-use app\models\PostsQueue;
 
 class PostJob extends BaseObject implements \yii\queue\JobInterface
 {
@@ -15,7 +14,7 @@ class PostJob extends BaseObject implements \yii\queue\JobInterface
 
     public function execute($queue)
     {
-        try {
+        //try {
             \Yii::$app->mailer
                 ->compose()
                 ->setFrom("noreply@example.com")
@@ -25,10 +24,11 @@ class PostJob extends BaseObject implements \yii\queue\JobInterface
                 ->setHtmlBody($this->html)
                 ->send();
 
-            $this->model->insertQueueNotification(
-                $this->id,
-                date("Y-m-d H:i:s", strtotime("now"))
-            );
+            //$this->model->insertQueueNotification(
+              //  $this->id,
+               // date("Y-m-d H:i:s", strtotime("now"))
+            //);
+            /*
         } catch (\Exception $e) {
             \Yii::$app->mailer
                 ->compose()
@@ -44,5 +44,6 @@ class PostJob extends BaseObject implements \yii\queue\JobInterface
                 date("Y-m-d H:i:s", strtotime("now"))
             );
         }
+        */
     }
 }

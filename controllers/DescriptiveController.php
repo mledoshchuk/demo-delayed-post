@@ -160,14 +160,14 @@ class DescriptiveController extends Controller
             ]);
 
             if ($result == "Completed") {
-                $queueResult = $this->actionAddPostToQueue(
+                $this->actionAddPostToQueue(
                     $postQueue,
                     $post->id,
                     $postAtNow,
                     $postAt,
                     $htmlBody
                 );
-                echo "$queueResult";
+                echo "success";
             } else {
                 echo "error";
             }
@@ -184,18 +184,14 @@ class DescriptiveController extends Controller
         $origin = strtotime($origin);
         $target = strtotime($target) ?? strtotime("now");
         $interval = abs($origin - $target);
-        
-        if (\Yii::$app->queue->delay($interval)->push(
+
+        \Yii::$app->queue->delay($interval)->push(
             new PostJob([
                 "model" => $model,
                 "id" => $id,
                 "html" => $html,
                 "text" => "Posted successfully",
             ])
-        )) {           
-            echo 'success';
-        } else {
-            echo 'error';
-        }
+        );
     }
 }
