@@ -12,10 +12,11 @@ Installation
 ------------
 ```
 git clone mledoshchuk/demo-delayed-post.git project
-```
+
 cd project
-```
+
 composer install
+
 
 Updating database schema
 ------------------------
