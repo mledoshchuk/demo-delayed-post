@@ -7,7 +7,7 @@ Limitation
 ------------
 ```
 PHP >= 7.4
-MYSQL => 4.8
+MYSQL >= 4.8
 ```
 Installation
 ------------
