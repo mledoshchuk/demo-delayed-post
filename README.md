@@ -32,9 +32,6 @@ return [
 ```
 Updating database schema
 ------------------------
-
-Run `yii migrate` command in command line:
-
 ```
 php yii migrate/up
 ```
@@ -43,5 +40,5 @@ Starting the queue
 -------------------------
 
 ```
-yii queue/listen
+php yii queue/listen
 ```
