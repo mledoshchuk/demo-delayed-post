@@ -5,10 +5,10 @@ Test task from 4kSoft
 
 Limitation
 ------------
-
+```
 requires PHP >= 7.4
 MYSQL => 4.8
-
+```
 Installation
 ------------
 ```
