@@ -2,9 +2,9 @@
 
 return [
     'class' => 'yii\db\Connection',
-    'dsn' => 'mysql:host=s4.localhost;dbname=delayed_post',
-    'username' => 'root',
-    'password' => 'marodendik',
+    'dsn' => 'mysql:host=your_host_name;dbname=your_db_name',
+    'username' => '',
+    'password' => '',
     'charset' => 'utf8',
 
     // Schema cache options (for production environment)
