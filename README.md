@@ -12,7 +12,7 @@ MYSQL >= 4.8
 Installation
 ------------
 ```
-git clone mledoshchuk/demo-delayed-post.git project
+git clone https://github.com/mledoshchuk/demo-delayed-post.git project
 
 cd project
 
