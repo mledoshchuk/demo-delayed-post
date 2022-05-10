@@ -17,7 +17,18 @@ cd project
 
 composer install
 ```
+Configure db.php file
+---------------------
+```
+return [
+    'class' => 'yii\db\Connection',
+    'dsn' => 'mysql:host=your_host_name;dbname=your_db_name',
+    'username' => 'your_username',
+    'password' => 'your_pswd',
+    'charset' => 'utf8',
+];
 
+```
 Updating database schema
 ------------------------
 
