@@ -5,9 +5,10 @@ Test task from 4kSoft
 
 Limitation
 ------------
-
-requires PHP >= 7.4
-
+```
+PHP >= 7.4
+MYSQL >= 4.8
+```
 Installation
 ------------
 ```
@@ -17,7 +18,18 @@ cd project
 
 composer install
 ```
+Configure db.php file
+---------------------
+```
+return [
+    'class' => 'yii\db\Connection',
+    'dsn' => 'mysql:host=your_host_name;dbname=your_db_name',
+    'username' => 'your_username',
+    'password' => 'your_pswd',
+    'charset' => 'utf8',
+];
 
+```
 Updating database schema
 ------------------------
 
