@@ -10,7 +10,9 @@ requires PHP >= 7.4
 
 Installation
 ------------
-
+git clone mledoshchuk/demo-delayed-post.git project
+cd project
+composer install
 
 Updating database schema
 ------------------------
@@ -18,7 +20,7 @@ Updating database schema
 Run `yii migrate` command in command line:
 
 ```
-php yii migrate/up --migrationPath=@vendor/---/yii2-mailqueue/src/migrations/
+php yii migrate/up
 ```
 
 Starting the queue

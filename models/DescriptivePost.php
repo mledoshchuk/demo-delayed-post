@@ -58,18 +58,6 @@ class DescriptivePost extends \yii\db\ActiveRecord
             'ends_at' => 'Ends At',
         ];
     }
-    public function insertDescriptivePost(int $postId, $positionDescription, int $salary, $startsAt, $endsAt){
-        
-        $this->post_id = $postId;
-        $this->position_description = $positionDescription;
-        $this->salary = $salary;
-        $this->starts_at = $startsAt;
-        $this->ends_at = $endsAt;
-        
-        $this->save();
-
-        return true;
-    }
     /**
      * Gets query for [[Post]].
      *

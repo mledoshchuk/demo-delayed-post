@@ -177,7 +177,7 @@ class DescriptiveController extends Controller
         }
     }
 
-    public function actionAddPostToQueue($model, $id, $origin, $target, $html)
+    private function actionAddPostToQueue($model, $id, $origin, $target, $html)
     {
         $origin = strtotime($origin);
         $target = strtotime($target) ?? strtotime("now");

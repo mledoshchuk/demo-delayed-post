@@ -45,7 +45,6 @@ class PostController extends Controller
 
         return \yii\helpers\Json::encode([
             "status" => true,
-            "id" => $typeId,
             "result" => $result
         ]);
     }

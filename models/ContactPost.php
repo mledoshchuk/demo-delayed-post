@@ -69,15 +69,4 @@ class ContactPost extends \yii\db\ActiveRecord
     {
         return $this->hasOne(Post::className(), ['id' => 'post_id']);
     }
-
-    public function insertContactPost(int $postId, $contact_email, $contact_name){
-        
-        $this->post_id = $postId;
-        $this->contact_email = $contact_email;
-        $this->contact_name = $contact_name;
-        
-        $this->save();
-
-        return true;
-    }
 }

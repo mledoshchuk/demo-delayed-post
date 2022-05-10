@@ -29,14 +29,8 @@ function getXMLHttpRequest(selectValue) {
             if (xmlhttp.status == 200) {
                 var response = JSON.parse(xmlhttp.responseText);
                 if (response.status) {
-                    if (response.id !== '0'){
                         let container = document.getElementById('main-contr');
                         container.innerHTML = response.result;
-                    }
-                    else{
-                        let container = document.getElementById('main-contr');
-                        container.innerHTML = response.result;
-                    }
                 }
 
             }

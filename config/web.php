@@ -17,7 +17,6 @@ $config = [
     ],
     'components' => [
         'request' => [
-            // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
             'cookieValidationKey' => 'OMmIlKudMynUlb-1EKeY1lcDT1cWAISR',
         ],
         'cache' => [
@@ -30,20 +29,8 @@ $config = [
         'errorHandler' => [],
         'mailer' => [
             'class' => 'yii\swiftmailer\Mailer',
-            // send all mails to a file by default. You have to set
-            // 'useFileTransport' to false and configure transport
-            // for the mailer to send real emails.
             'useFileTransport' => true,
         ],
-        /*
-        'queue' => [
-            'class' => \yii\queue\db\Queue::class,
-            'db' => 'db', // DB connection component or its config 
-            'tableName' => '{{%queue}}', // Table name
-            'channel' => 'default', // Queue channel key
-            'mutex' => \yii\mutex\MysqlMutex::class, // Mutex used to sync queries
-        ],
-        */
         'queue' => [
             'class' => \yii\queue\file\Queue::class,
             'path' => '@runtime/queue',
