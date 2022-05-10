@@ -19,7 +19,7 @@ class PostController extends Controller
         ]);
     }
 
-    public function actionRedirect()
+    public function actionLoad()
     {
         $typeId = $this->request->post("typeId");
         $modelContact = new ContactPost();

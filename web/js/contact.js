@@ -37,7 +37,7 @@ function submitForm() {
         }
     }
     let base_url = window.location.origin + window.location.pathname;
-    xmlhttp.open("POST", base_url + '/' + "contact");
+    xmlhttp.open("POST", base_url + "?r=contact%2Fcreate");
     xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     xmlhttp.setRequestHeader("X-Requested-With", "XMLHttpRequest");
     xmlhttp.setRequestHeader('X-CSRF-Token', yii.getCsrfToken());
