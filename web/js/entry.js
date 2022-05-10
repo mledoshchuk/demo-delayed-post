@@ -45,7 +45,7 @@ function getXMLHttpRequest(selectValue) {
 
     let base_url = window.location.origin + window.location.pathname;
 
-    xmlhttp.open('POST', base_url + '/' + 'forms');
+    xmlhttp.open('POST', base_url + '?r=post%2Fload');
     xmlhttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
     xmlhttp.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
     xmlhttp.setRequestHeader('X-CSRF-Token', yii.getCsrfToken());

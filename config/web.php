@@ -45,21 +45,7 @@ $config = [
                 ],
             ],
         ],
-        'db' => $db,
-
-        'urlManager' => [
-            'enablePrettyUrl' => true,
-            'showScriptName' => false,
-            'rules' => [
-                'post' => 'post/index',
-                'post/forms' => 'post/redirect',
-                'post/contact' => 'contact/create',
-                'post/descriptive' => 'descriptive/create',
-                'forms' => 'post/redirect',
-                'decriptive' => 'descriptive/create',
-                'contact' => 'contact/create'
-            ],
-        ],
+        'db' => $db
 
     ],
     'params' => $params,
